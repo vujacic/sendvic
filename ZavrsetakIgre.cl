@@ -82,7 +82,10 @@
 
 ;vraca ij element matrice
 (defun ij (poz mat)
-	(nth (cadr poz) (nth (car poz) mat))) 
+	(cond
+		((null poz) nil)
+		((or (< (car poz) 0) (< (cadr poz) 0)) nil)
+		(t (nth (cadr poz) (nth (car poz) mat))))) 
 
 ;ne boja -> suprotno od boje vraca
 
@@ -94,3 +97,4 @@
 		((null niz) nil)
 		((>= (car niz) broj) t)
 		(t (vece-od broj (cdr niz)))))
+

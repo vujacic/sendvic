@@ -22,7 +22,9 @@
 	(let ((x (car poz)) (y (cadr poz)) (i (car poz_new)) (j (cadr poz_new)))
 		(setf (nth j (nth i mat)) curr)
 		(setf (nth y (nth x mat)) 2)
-		(proveri-kraj curr poz_new *n* mat)))
+		(progn 
+		(postavi-sen (sendvic-niz poz_new mat curr) mat)
+		(proveri-kraj curr poz_new *n* mat))))
 
 
 ;not complete
@@ -35,3 +37,13 @@
 			(prog1 (format t "pobednik") ) (progn (setq *curr* (neboja *curr*)) (read-eval-exe)))
 		(prog1 (format t "Pogresan potez!")
 				(read-eval-exe))))
+
+(defun postavi (poz mat ele)
+	(setf (nth (cadr poz) (nth (car poz) mat)) ele))
+
+(defun postavi-sen (niz mat)
+	(cond 
+		((null (car niz)) nil)
+		(t (prog1 
+			(postavi (car niz) mat 2) 
+			(postavi-sen (cdr niz) mat)))))
