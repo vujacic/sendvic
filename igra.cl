@@ -1,6 +1,7 @@
 ;globalno stanje 
 (defvar *matrica* '())
 (defvar *n* )
+(defvar *size*)
 (defvar *curr* 1)
 (defvar *poz*)
 
@@ -10,6 +11,7 @@
 	;(format t "~CUnesi dimenzije polja:"#\linefeed)
     ;(setq n (read))
     (setq *n* dim)
+    (setq *size* (* *n* *n*))
     (setq *matrica* (generisi *n* *n*))
     (setq *curr* 1)
     (format t "IKS ili OKS (1 ili 0):")
@@ -32,11 +34,12 @@
 	(stampaj *matrica* 35)
 	(format t "~CUnesi koor:"#\linefeed)
 	(setq *poz* (read))
+	(if (atom *poz*) nil
 	(if (validacijap (ij (car *poz*) *matrica*) (car *poz*) (cadr *poz*) *matrica*) 
 		(if (napravi-potez *curr* (car *poz*) (cadr *poz*) *matrica*)
 			(prog1 (format t "pobednik") ) (progn (setq *curr* (neboja *curr*)) (read-eval-exe)))
 		(prog1 (format t "Pogresan potez!")
-				(read-eval-exe))))
+				(read-eval-exe)))))
 
 (defun postavi (poz mat ele)
 	(setf (nth (cadr poz) (nth (car poz) mat)) ele))
