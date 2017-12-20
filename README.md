@@ -19,3 +19,9 @@ Prob - f-je za generisanje početnog stanja.
 U fajlu igra se startuje igra iz f-je 'init' kojoj se zadaja dimenzija matrice
 koja samo poziva f-ju read-eval-exe i primenjuje zadate poteze, za sad samo od čoveka.
 (detekcija sendviča još nije implementirana)
+
+ver 1.1
+
+Sendvic detektuje
+Vraca sva stanja
+Implementiran alfa beta 
