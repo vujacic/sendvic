@@ -52,8 +52,13 @@
 
 (defun proceni (p)
 	;(format t "ja procenjujem ~a ~%" p)
-	(let ((stanje (caddr p)) (poz (car(cadr p))))
+	(let ((stanje (caddr p)) (poz (car(cadr p))) (boja (ij (car(cadr p)) (caddr p))))
+		;(format t "proceni poz boja ~a ~a~%" poz boja)
 		(cond
-			((proveri-kraj 1 poz *n* stanje) (cons 10 (cdr p)))
-			((proveri-kraj 0 poz *n* stanje) (cons -10 (cdr p)))
-			(t (if (> (izbroji 1 stanje)(izbroji 0 stanje)) (cons 5 (cdr p)) (cons -5 (cdr p))))))) 
+			((proveri-kraj 1 poz *n* stanje) (cons 100 (cdr p)))
+			((proveri-kraj 0 poz *n* stanje) (cons -100 (cdr p)))
+			(t (if (equal boja 1) (cons (- 100 (+ (car poz) (cadr poz))) (cdr p)) (cons (- (+ (car poz) (cadr poz)) 100) (cdr p))))
+			;(t (cons (div (+ (car poz) (car poz)) *n*) (cdr p)))
+			(t (if (> (izbroji 1 stanje)(izbroji 0 stanje)) (cons 5 (cdr p)) (cons -5 (cdr p)))))))  
+
+
